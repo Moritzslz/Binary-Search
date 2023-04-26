@@ -16,7 +16,7 @@ public final class BinSea {
         int mid = -1;
 
         if (upperBound - lowerBound <= 2) {
-            return mid;
+            return (upperBound - lowerBound) / 2 + lowerBound + 1;
         }
 
         mid = (upperBound - lowerBound) / 2 + lowerBound;
