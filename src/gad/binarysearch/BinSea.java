@@ -8,30 +8,23 @@ public final class BinSea {
     }
 
     public static int search(int[] sortedData, int value, Result result) {
-       return recursiveBinarySearch(sortedData, value, 0, (sortedData.length-1), sortedData.length - 1 / 2, result);
-    }
+        int lowerBound = 0;
+        int upperBound = sortedData.length - 1;
+        int mid = upperBound / 2;
 
-    public static int recursiveBinarySearch(int[] sortedData, int value, int lowerBound, int upperBound, int lastMid, Result result) {
-        int index = -1;
-        int mid = -1;
-
-        if (upperBound - lowerBound <= 2) {
-            return lastMid;
+        while(lowerBound != upperBound) {
+            result.addStep(mid);
+            if (value == sortedData[mid]) {
+                return mid;
+            } else if (value < sortedData[mid]) {
+                upperBound = mid-1;
+                mid = upperBound / 2;
+            } else if (value > sortedData[mid]) {
+                lowerBound = mid+1;
+                mid = (lowerBound + upperBound) / 2;
+            }
         }
-
-        mid = (upperBound - lowerBound) / 2 + lowerBound;
-        result.addStep(mid);
-
-        if(value == sortedData[mid]) {
-            return mid;
-        } else if(value < sortedData[mid]) {
-            upperBound = mid;
-            index =  recursiveBinarySearch(sortedData, value, lowerBound, upperBound, mid, result);
-        } else if (value > sortedData[mid]) {
-            lowerBound = mid;
-            index =  recursiveBinarySearch(sortedData, value, lowerBound, upperBound, mid, result);
-        }
-        return index;
+        return mid;
     }
 
     public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
