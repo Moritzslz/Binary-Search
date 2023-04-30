@@ -31,8 +31,11 @@ public final class BinSea {
             }
             result.addStep(mid);
         }
-        if(lowerBound == upperBound)
+        if(lowerBound == upperBound) {
+            if (sortedData[upperBound] == value)
+                result.addStep(upperBound);
             return upperBound;
+        }
         return mid;
     }
 
@@ -46,9 +49,10 @@ public final class BinSea {
 
     public static void main(String[] args) {
         int[] array = new int[] { 2, 7, 7, 42, 69, 1337, 2000, 9001 };
+        int[] array2 = new int[] { 1, 3, 7, 15, 31, 63, 127, 255 };
 
-        System.out.println(search(array, 7, new StudentResult()));
-        System.out.println(search(array, 100, new StudentResult()));
+        System.out.println(search(array2, 7, new StudentResult()));
+        System.out.println(search(array2, 100, new StudentResult()));
 
         System.out.println(search(array, 7, false, new StudentResult()));
         System.out.println(search(array, 100, true, new StudentResult()));
