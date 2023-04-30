@@ -13,7 +13,7 @@ public final class BinSea {
         int mid = upperBound / 2;
         result.addStep(mid);
 
-        while(lowerBound != upperBound) {
+        for(int i = 0; i < sortedData.length - 1; i++) {
             if (value == sortedData[mid]) {
                 return mid;
             } else if (value < sortedData[mid]) {
