@@ -11,9 +11,9 @@ public final class BinSea {
         int lowerBound = 0;
         int upperBound = sortedData.length - 1;
         int mid = upperBound / 2;
+        result.addStep(mid);
 
         while(lowerBound != upperBound) {
-            result.addStep(mid);
             if (value == sortedData[mid]) {
                 return mid;
             } else if (value < sortedData[mid]) {
@@ -21,15 +21,18 @@ public final class BinSea {
                 if (lowerBound != upperBound)
                     mid = upperBound / 2;
                 else
-                    return upperBound;
+                    break;
             } else if (value > sortedData[mid]) {
                 lowerBound = mid+1;
                 if (lowerBound != upperBound)
                     mid = (lowerBound + upperBound) / 2;
                 else
-                    return upperBound;
+                    break;
             }
+            result.addStep(mid);
         }
+        if(lowerBound == upperBound)
+            return upperBound;
         return mid;
     }
 
