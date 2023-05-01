@@ -15,10 +15,10 @@ public final class BinSea {
         int mid = (lowerBound + upperBound) / 2;
 
         if (upperBound - lowerBound == 2) {
-            result.addStep(mid);
+            if(value == sortedData[mid])
+                result.addStep(mid);
             return mid;
-        }
-        else if (upperBound == lowerBound)
+        } else if (upperBound == lowerBound)
             return upperBound;
 
         result.addStep(mid);
@@ -30,8 +30,7 @@ public final class BinSea {
         else if (value > sortedData[mid]) {
             lowerBound = mid;
             mid = recursiveBinSea(sortedData, value, result, lowerBound, upperBound);
-        }
-        else if (value == sortedData[mid])
+        } else if (value == sortedData[mid])
             return mid;
         return mid;
     }
@@ -47,9 +46,10 @@ public final class BinSea {
     public static void main(String[] args) {
         int[] array = new int[] { 2, 7, 7, 42, 69, 1337, 2000, 9001 };
         int[] array2 = new int[] { 1, 3, 7, 15, 31, 63, 127, 255 };
+        int[] array3 = new int[] { 2, 4, 8, 16, 32, 64, 128, 256 };
 
-        System.out.println(search(array2, 7, new StudentResult()));
-        System.out.println(search(array2, 100, new StudentResult()));
+        System.out.println(search(array3, 1, new StudentResult()));
+        System.out.println(search(array3, 300, new StudentResult()));
 
         System.out.println(search(array, 7, false, new StudentResult()));
         System.out.println(search(array, 100, true, new StudentResult()));
