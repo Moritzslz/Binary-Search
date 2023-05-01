@@ -18,8 +18,8 @@ public final class BinSea {
 
         if(mid != -1)
             return mid;
-        else if(lowerBound == upperBound)
-            return lowerBound;
+        else if (sortedData[lowerBound] < value && value < sortedData[upperBound])
+            return upperBound;
         else if (lowerBound != -1)
             return lowerBound;
         else
