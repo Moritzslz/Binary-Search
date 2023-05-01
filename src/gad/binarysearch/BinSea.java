@@ -8,7 +8,43 @@ public final class BinSea {
     }
 
     public static int search(int[] sortedData, int value, Result result) {
-        return recursiveBinSea(sortedData, value, result, 0, sortedData.length - 1);
+        int lowerBound = 0;
+        int upperBound = sortedData.length - 1;
+        int mid = (lowerBound + upperBound) / 2;
+
+        if (sortedData[lowerBound] == sortedData[upperBound])
+            return mid;
+
+        for (int i = 0; i < sortedData.length - 1; i++) {
+            mid = (lowerBound + upperBound) / 2;
+            //System.out.println("Lower: " + lowerBound);
+            //System.out.println("Upper: " + upperBound);
+
+            if (lowerBound == upperBound) {
+                if (sortedData[mid] == value)
+                    result.addStep(mid);
+                break;
+            } else if (lowerBound == upperBound - 1) {
+                if (sortedData[lowerBound] == value) {
+                    result.addStep(lowerBound);
+                    return lowerBound;
+                } else if (sortedData[upperBound] == value) {
+                    result.addStep(upperBound);
+                    return upperBound;
+                } else
+                    return upperBound;
+            }
+
+            result.addStep(mid);
+
+            if(value < sortedData[mid])
+                upperBound = mid - 1;
+            else if(value > sortedData[mid])
+                lowerBound = mid + 1;
+            else if(value == sortedData[mid])
+                break;
+        }
+        return mid;
     }
 
     public static int recursiveBinSea(int[] sortedData, int value, Result result, int lowerBound, int upperBound) {
