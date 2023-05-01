@@ -32,6 +32,7 @@ public final class BinSea {
                     result.addStep(upperBound);
                     return upperBound;
                 } else
+                    result.addStep(upperBound);
                     return upperBound;
             }
 
