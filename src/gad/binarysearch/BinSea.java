@@ -12,38 +12,51 @@ public final class BinSea {
         int upperBound = sortedData.length - 1;
         int mid = (lowerBound + upperBound) / 2;
 
+        //Edge case: all values are the same
         if (sortedData[lowerBound] == sortedData[upperBound])
             return mid;
 
-        for (int i = 0; i < sortedData.length - 1; i++) {
+        //The maximum amount of iterations is half of the array length
+        //That is the case when the searched index is at the most outer
+        //edge of the array you get when splitting the given array in half.
+        for (int i = 0; i < sortedData.length / 2; i++) {
             mid = (lowerBound + upperBound) / 2;
-            //System.out.println("Lower: " + lowerBound);
-            //System.out.println("Upper: " + upperBound);
 
-            if (lowerBound == upperBound) {
-                if (sortedData[mid] == value)
-                    result.addStep(mid);
-                break;
-            } else if (lowerBound == upperBound - 1) {
+            //Termination Condition
+            if (lowerBound == upperBound - 1) {
                 if (sortedData[lowerBound] == value) {
                     result.addStep(lowerBound);
                     return lowerBound;
                 } else if (sortedData[upperBound] == value) {
                     result.addStep(upperBound);
                     return upperBound;
-                } else
-                    result.addStep(upperBound);
+                } else if (sortedData[lowerBound] < value && value < sortedData[upperBound]) {
+                    //If the searched for value lies between lower bound and upper bound then the searched for value
+                    //is not contained in the array
+                    //-> return upperBound (next bigger value)
                     return upperBound;
+                } else if (sortedData[lowerBound] > value) {
+                    //If the lower bound is 0, and it's value is bigger than the searched for value then the searched
+                    //for value is not contained in the array
+                    //-> return lowerBound (next bigger value)
+                    return lowerBound;
+                } else if (sortedData[upperBound] < value) {
+                    //If the upperBound bound is sortedDate.length - 1, and it's value is smaller than the searched
+                    //for value then the searched for value is not contained in the array
+                    //-> return upperBound (next smaller value)
+                    return upperBound;
+                }
             }
 
             result.addStep(mid);
 
-            if(value < sortedData[mid])
-                upperBound = mid - 1;
-            else if(value > sortedData[mid])
+            if (sortedData[mid] > value) {
+                upperBound = mid;
+            } else if (sortedData[mid] < value) {
                 lowerBound = mid + 1;
-            else if(value == sortedData[mid])
+            } else if (sortedData[mid] == value) {
                 break;
+            }
         }
         return mid;
     }
