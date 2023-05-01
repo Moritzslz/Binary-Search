@@ -23,35 +23,39 @@ public final class BinSea {
             mid = (lowerBound + upperBound) / 2;
 
             //Termination Condition
-            if (lowerBound == upperBound - 1) {
-                if (sortedData[lowerBound] == value) {
-                    result.addStep(lowerBound);
-                    return lowerBound;
-                } else if (sortedData[upperBound] == value) {
+            if (lowerBound == upperBound) {
+                if (sortedData[upperBound] == value)
                     result.addStep(upperBound);
-                    return upperBound;
-                } else if (sortedData[lowerBound] < value && value < sortedData[upperBound]) {
-                    //If the searched for value lies between lower bound and upper bound then the searched for value
-                    //is not contained in the array
-                    //-> return upperBound (next bigger value)
-                    return upperBound;
-                } else if (sortedData[lowerBound] > value) {
-                    //If the lower bound is 0, and it's value is bigger than the searched for value then the searched
-                    //for value is not contained in the array
-                    //-> return lowerBound (next bigger value)
-                    return lowerBound;
-                } else if (sortedData[upperBound] < value) {
-                    //If the upperBound bound is sortedDate.length - 1, and it's value is smaller than the searched
-                    //for value then the searched for value is not contained in the array
-                    //-> return upperBound (next smaller value)
-                    return upperBound;
+                return upperBound;
+            } else if (lowerBound == upperBound - 1) {
+                    if (sortedData[lowerBound] == value) {
+                        result.addStep(lowerBound);
+                        return lowerBound;
+                    } else if (sortedData[upperBound] == value) {
+                        result.addStep(upperBound);
+                        return upperBound;
+                    } else if (sortedData[lowerBound] < value && value < sortedData[upperBound]) {
+                        //If the searched for value lies between lower bound and upper bound then the searched for value
+                        //is not contained in the array
+                        //-> return upperBound (next bigger value)
+                        return upperBound;
+                    } else if (sortedData[lowerBound] > value) {
+                        //If the lower bound is 0, and it's value is bigger than the searched for value then the searched
+                        //for value is not contained in the array
+                        //-> return lowerBound (next bigger value)
+                        return lowerBound;
+                    } else if (sortedData[upperBound] < value) {
+                        //If the upperBound bound is sortedDate.length - 1, and it's value is smaller than the searched
+                        //for value then the searched for value is not contained in the array
+                        //-> return upperBound (next smaller value)
+                        return upperBound;
+                    }
                 }
-            }
 
             result.addStep(mid);
 
             if (sortedData[mid] > value) {
-                upperBound = mid;
+                upperBound = mid - 1;
             } else if (sortedData[mid] < value) {
                 lowerBound = mid + 1;
             } else if (sortedData[mid] == value) {
