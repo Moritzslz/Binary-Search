@@ -9,21 +9,23 @@ public final class BinSea {
 
     public static int search(int[] sortedData, int value, Result result) {
         int[] indices = binarySearch(sortedData, value, result);
-        int mid = indices[0];
-        int lowerBound = indices[1];
-        int upperBound = indices[2];
 
-        if(lowerBound == upperBound)
-            return mid;
-
-        if(mid != -1)
-            return mid;
-        else if (sortedData[lowerBound] < value && value < sortedData[upperBound])
-            return upperBound;
-        else if (lowerBound != -1)
-            return lowerBound;
-        else
-            return upperBound;
+        if (indices[1] == indices[2]) {
+            return indices[2];
+        } else if (indices[1] == indices[2] - 1) {
+            if (sortedData[indices[1]] == value) {
+                return indices[1];
+            } else if (sortedData[indices[2]] == value) {
+                return indices[2];
+            } else if (sortedData[indices[1]] < value && value < sortedData[indices[2]]) {
+                return indices[2];
+            } else if (sortedData[indices[1]] > value) {
+                return indices[1];
+            } else if (sortedData[indices[2]] < value) {
+                return indices[2];
+            }
+        }
+        return indices[0];
     }
 
     public static int[] binarySearch(int[] sortedData, int value, Result result) {
