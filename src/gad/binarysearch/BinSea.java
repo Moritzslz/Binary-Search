@@ -72,7 +72,7 @@ public final class BinSea {
         int idx = search(sortedData, value, result);
         int maxLen = sortedData.length - 1;
 
-        if (lowerBound) {
+        if (!lowerBound) {
             if (idx == maxLen) {
                 if (sortedData[idx] > value)
                     return -1;
@@ -104,7 +104,7 @@ public final class BinSea {
         int[] array3 = new int[] { 2, 4, 8, 16, 32, 64, 128, 256 }; //7
         int[] array4 = new int[] { 2, 2, 2, 2, 2, 2, 2, 2, 2 }; //8
 
-        //System.out.println(search(array2, 7, new StudentResult()));
+        System.out.println(search(array2, 7, new StudentResult()));
         System.out.println(search(array2, 100, new StudentResult()));
 
         System.out.println(search(array, 1, false, new StudentResult()));
