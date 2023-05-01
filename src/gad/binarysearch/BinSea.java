@@ -13,8 +13,13 @@ public final class BinSea {
         int lowerBound = indices[1];
         int upperBound = indices[2];
 
+        if(lowerBound == upperBound)
+            return mid;
+
         if(mid != -1)
             return mid;
+        else if(lowerBound == upperBound)
+            return lowerBound;
         else if (lowerBound != -1)
             return lowerBound;
         else
@@ -76,8 +81,8 @@ public final class BinSea {
                     //for value then the searched for value is not contained in the array
                     //-> return indices[2] (next smaller value)
                     result.addStep(indices[2]);
-                    indices[0] = -1;
                     indices[1] = indices[2];
+                    indices[0] = -1;
                     return indices;
                 }
             }
@@ -110,7 +115,7 @@ public final class BinSea {
         int[] array4 = new int[] { 2, 2, 2, 2, 2, 2, 2, 2, 2 }; //8
 
         System.out.println(search(array, 7, new StudentResult()));
-        System.out.println(search(array, 1500, new StudentResult()));
+        System.out.println(search(array, 100, new StudentResult()));
 
         System.out.println(search(array, 1, false, new StudentResult()));
         System.out.println(search(array, 100, true, new StudentResult()));
