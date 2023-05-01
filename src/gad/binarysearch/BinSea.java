@@ -23,6 +23,7 @@ public final class BinSea {
                 result.addStep(mid);
             return lowerBound;
         }
+
         result.addStep(mid);
 
         if (value < sortedData[mid]) {
@@ -36,7 +37,16 @@ public final class BinSea {
     }
 
     public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
-        return 0;
+        int index = search(sortedData, value, result);
+        if (lowerBound && index == 0 && sortedData[0] > value) {
+            return - 1;
+        } else if (!lowerBound && index == sortedData.length - 1 && sortedData[index] < value)
+            return -1;
+        while (lowerBound && index != 0 && sortedData[index-1] == sortedData [index])
+            index--;
+        while (!lowerBound && index != sortedData.length - 1 && sortedData[index] == sortedData [index+1])
+            index++;
+        return index;
     }
 
     public static Interval search(int[] sortedData, NonEmptyInterval valueRange, Result resultLower, Result resultHigher) {
