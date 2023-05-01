@@ -8,34 +8,29 @@ public final class BinSea {
     }
 
     public static int search(int[] sortedData, int value, Result result) {
-        int lowerBound = 0;
-        int upperBound = sortedData.length - 1;
-        int mid = upperBound / 2;
+        return recursiveBinSea(sortedData, value, result, 0, sortedData.length - 1);
+    }
+
+    public static int recursiveBinSea(int[] sortedData, int value, Result result, int lowerBound, int upperBound) {
+        int mid = (lowerBound + upperBound) / 2;
+
+        if (upperBound - lowerBound == 2)
+            return mid;
+        else if (upperBound == lowerBound)
+            return upperBound;
+
         result.addStep(mid);
 
-        for(int i = 0; i < sortedData.length - 1; i++) {
-            if (value == sortedData[mid]) {
-                return mid;
-            } else if (value < sortedData[mid]) {
-                upperBound = mid-1;
-                if (lowerBound != upperBound)
-                    mid = upperBound / 2;
-                else
-                    break;
-            } else if (value > sortedData[mid]) {
-                lowerBound = mid+1;
-                if (lowerBound != upperBound)
-                    mid = (lowerBound + upperBound) / 2;
-                else
-                    break;
-            }
-            result.addStep(mid);
+        if (value < sortedData[mid]) {
+            upperBound = mid;
+            mid = recursiveBinSea(sortedData, value, result, lowerBound, upperBound);
         }
-        if(lowerBound == upperBound) {
-            if (sortedData[upperBound] == value)
-                result.addStep(upperBound);
-            return upperBound;
+        else if (value > sortedData[mid]) {
+            lowerBound = mid;
+            mid = recursiveBinSea(sortedData, value, result, lowerBound, upperBound);
         }
+        else if (value == sortedData[mid])
+            return mid;
         return mid;
     }
 
