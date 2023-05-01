@@ -29,27 +29,28 @@ public final class BinSea {
                 return upperBound;
             } else if (lowerBound == upperBound - 1) {
                     if (sortedData[lowerBound] == value) {
-                        result.addStep(upperBound);
                         result.addStep(lowerBound);
                         return lowerBound;
                     } else if (sortedData[upperBound] == value) {
-                        result.addStep(lowerBound);
                         result.addStep(upperBound);
                         return upperBound;
                     } else if (sortedData[lowerBound] < value && value < sortedData[upperBound]) {
                         //If the searched for value lies between lower bound and upper bound then the searched for value
                         //is not contained in the array
                         //-> return upperBound (next bigger value)
+                        result.addStep(upperBound);
                         return upperBound;
                     } else if (sortedData[lowerBound] > value) {
                         //If the lower bound is 0, and it's value is bigger than the searched for value then the searched
                         //for value is not contained in the array
                         //-> return lowerBound (next bigger value)
+                        result.addStep(lowerBound);
                         return lowerBound;
                     } else if (sortedData[upperBound] < value) {
                         //If the upperBound bound is sortedDate.length - 1, and it's value is smaller than the searched
                         //for value then the searched for value is not contained in the array
                         //-> return upperBound (next smaller value)
+                        result.addStep(upperBound);
                         return upperBound;
                     }
                 }
@@ -99,13 +100,13 @@ public final class BinSea {
     }
 
     public static void main(String[] args) {
-        int[] array = new int[] { 2, 7, 7, 42, 69, 1337, 2000, 9001 };
-        int[] array2 = new int[] { 1, 3, 7, 15, 31, 63, 127, 255 };
-        int[] array3 = new int[] { 2, 4, 8, 16, 32, 64, 128, 256 };
-        int[] array4 = new int[] { 2, 2, 2, 2, 2, 2, 2, 2, 2 };
+        int[] array = new int[] { 2, 7, 7, 42, 69, 1337, 2000, 9001 }; //7
+        int[] array2 = new int[] { 1, 3, 7, 15, 31, 63, 127, 255 }; //7
+        int[] array3 = new int[] { 2, 4, 8, 16, 32, 64, 128, 256 }; //7
+        int[] array4 = new int[] { 2, 2, 2, 2, 2, 2, 2, 2, 2 }; //8
 
-        System.out.println(search(array, 7, new StudentResult()));
-        System.out.println(search(array, 100, new StudentResult()));
+        //System.out.println(search(array2, 7, new StudentResult()));
+        System.out.println(search(array2, 100, new StudentResult()));
 
         System.out.println(search(array, 1, false, new StudentResult()));
         System.out.println(search(array, 100, true, new StudentResult()));
