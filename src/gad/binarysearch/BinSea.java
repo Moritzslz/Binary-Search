@@ -8,8 +8,6 @@ public final class BinSea {
     }
 
     public static int search(int[] sortedData, int value, Result result) {
-        if (sortedData[0] == sortedData[sortedData.length - 1])
-                return (sortedData.length - 1) / 2;
         return recursiveBinSea(sortedData, value, result, 0, sortedData.length - 1);
     }
 
@@ -37,28 +35,7 @@ public final class BinSea {
     }
 
     public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
-        int idx = search(sortedData, value, result);
-        System.out.println("Idx: " + idx);
-        if (lowerBound) {
-            if(idx == sortedData.length - 1 && sortedData[idx] < value)
-                return -1;
-            if(idx == 0 && sortedData[idx] < value)
-                return -1;
-            while (value > sortedData[idx])
-                idx++;
-            while (idx > 0 && sortedData[idx-1] == sortedData[idx])
-                idx--;
-        } else {
-            if(idx == sortedData.length - 1 && sortedData[idx] > value)
-                return -1;
-            if(idx == 0 && sortedData[idx] > value)
-                return -1;
-            while (value < sortedData[idx])
-                idx--;
-            while (idx < sortedData.length - 1 && sortedData[idx] == sortedData[idx+1])
-                idx++;
-        }
-        return idx;
+        return 0;
     }
 
     public static Interval search(int[] sortedData, NonEmptyInterval valueRange, Result resultLower, Result resultHigher) {
