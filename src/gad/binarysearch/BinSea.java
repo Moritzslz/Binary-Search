@@ -13,13 +13,12 @@ public final class BinSea {
 
     public static int recursiveBinSea(int[] sortedData, int value, Result result, int lowerBound, int upperBound) {
         int mid = (lowerBound + upperBound) / 2;
+        result.addStep(mid);
 
         if (upperBound - lowerBound == 2)
             return mid;
         else if (upperBound == lowerBound)
             return upperBound;
-
-        result.addStep(mid);
 
         if (value < sortedData[mid]) {
             upperBound = mid;
