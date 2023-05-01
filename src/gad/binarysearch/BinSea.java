@@ -72,9 +72,9 @@ public final class BinSea {
         int idx = search(sortedData, value, result);
         int maxLen = sortedData.length - 1;
 
-        if (!lowerBound) {
+        if (lowerBound) {
             if (idx == maxLen) {
-                if (sortedData[idx] < value)
+                if (sortedData[idx] > value)
                     return -1;
             }
             while (idx < maxLen && sortedData[idx] < value)
@@ -83,7 +83,7 @@ public final class BinSea {
                 idx++;
         } else {
             if (idx == 0) {
-                if (sortedData[idx] > value)
+                if (sortedData[idx] < value)
                     return -1;
             }
             while (idx < 0 && sortedData[idx] > value)
