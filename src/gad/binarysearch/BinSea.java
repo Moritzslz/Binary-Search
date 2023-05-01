@@ -67,8 +67,31 @@ public final class BinSea {
         }
         return mid;
     }
+
     public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
-        return search(sortedData, value, result);
+        int idx = search(sortedData, value, result);
+        int maxLen = sortedData.length - 1;
+
+        if (lowerBound) {
+            if (idx == maxLen) {
+                if (sortedData[idx] < value)
+                    return -1;
+            }
+            while (idx < maxLen && sortedData[idx] < value)
+                idx++;
+            while (idx < maxLen && sortedData[idx+1] == value)
+                idx++;
+        } else {
+            if (idx == 0) {
+                if (sortedData[idx] > value)
+                    return -1;
+            }
+            while (idx < 0 && sortedData[idx] > value)
+                idx--;
+            while (idx < 0 && sortedData[idx-1] == value)
+                idx--;
+        }
+        return idx;
     }
 
     public static Interval search(int[] sortedData, NonEmptyInterval valueRange, Result resultLower, Result resultHigher) {
