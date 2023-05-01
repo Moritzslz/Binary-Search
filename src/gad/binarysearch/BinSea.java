@@ -29,9 +29,11 @@ public final class BinSea {
                 return upperBound;
             } else if (lowerBound == upperBound - 1) {
                     if (sortedData[lowerBound] == value) {
+                        result.addStep(upperBound);
                         result.addStep(lowerBound);
                         return lowerBound;
                     } else if (sortedData[upperBound] == value) {
+                        result.addStep(lowerBound);
                         result.addStep(upperBound);
                         return upperBound;
                     } else if (sortedData[lowerBound] < value && value < sortedData[upperBound]) {
