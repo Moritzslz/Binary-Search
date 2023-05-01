@@ -42,6 +42,10 @@ public final class BinSea {
             return - 1;
         } else if (!lowerBound && index == sortedData.length - 1 && sortedData[index] < value)
             return -1;
+        while (lowerBound && index != 0 && sortedData[index] < value)
+            index++;
+        while (!lowerBound && index != sortedData.length - 1 && sortedData[index] > value)
+            index--;
         while (lowerBound && index != 0 && sortedData[index-1] == sortedData [index])
             index--;
         while (!lowerBound && index != sortedData.length - 1 && sortedData[index] == sortedData [index+1])
