@@ -18,10 +18,6 @@ public final class BinSea {
             if (value == sortedData[mid])
                 result.addStep(mid);
             return lowerBound;
-        } else if (lowerBound == upperBound - 1) {
-            if (value == sortedData[lowerBound])
-                return lowerBound;
-            return upperBound;
         } else if (sortedData[lowerBound] == sortedData[upperBound])
             return mid;
 
