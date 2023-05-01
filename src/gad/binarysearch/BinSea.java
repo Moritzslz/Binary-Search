@@ -67,32 +67,8 @@ public final class BinSea {
         }
         return mid;
     }
-
-    public static int recursiveBinSea(int[] sortedData, int value, Result result, int lowerBound, int upperBound) {
-        int mid = (lowerBound + upperBound) / 2;
-
-        if (lowerBound > upperBound) {
-            return lowerBound;
-        } else if (lowerBound == upperBound) {
-            if (value == sortedData[mid])
-                result.addStep(mid);
-            return lowerBound;
-        }
-
-        result.addStep(mid);
-
-        if (value < sortedData[mid]) {
-            upperBound = mid - 1;
-            return recursiveBinSea(sortedData, value, result, lowerBound, upperBound);
-        } else if (value > sortedData[mid]) {
-            lowerBound = mid + 1;
-            return recursiveBinSea(sortedData, value, result, lowerBound, upperBound);
-        }
-        return mid;
-    }
-
     public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
-        return 0;
+        return search(sortedData, value, result);
     }
 
     public static Interval search(int[] sortedData, NonEmptyInterval valueRange, Result resultLower, Result resultHigher) {
