@@ -25,6 +25,10 @@ public final class BinSea {
             else if (sortedData[mid] == value)
                 return mid;
         }
+        if (value < sortedData[0])
+            return 0;
+        else if (value > sortedData[sortedData.length - 1])
+            return sortedData.length - 1;
         return upperBound;
     }
 
