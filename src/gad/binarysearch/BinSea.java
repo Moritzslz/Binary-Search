@@ -8,7 +8,24 @@ public final class BinSea {
     }
 
     public static int search(int[] sortedData, int value, Result result) {
-        return 0;
+        int lowerBound = 0;
+        int upperBound = sortedData.length - 1;
+        int mid = (lowerBound + upperBound) / 2;
+
+        if (sortedData[lowerBound] == sortedData[upperBound])
+            return mid;
+
+        while (lowerBound < upperBound) {
+            mid = (lowerBound + upperBound) / 2;
+            result.addStep(mid);
+            if (sortedData[mid] < value)
+                lowerBound = mid + 1;
+            else if (sortedData[mid] > value)
+                upperBound = mid - 1;
+            else if (sortedData[mid] == value)
+                return mid;
+        }
+        return upperBound;
     }
 
     public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
