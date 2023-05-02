@@ -36,17 +36,21 @@ public final class BinSea {
 
     public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
         int idx = search(sortedData, value, result);
-        if (value < sortedData[0])
-            return -1;
-        else if (value > sortedData[sortedData.length - 1])
-            return -1;
         if (lowerBound) {
+            if (value < sortedData[0])
+                return 0;
+            else if (value > sortedData[sortedData.length - 1])
+                return -1;
             while (idx > 0 && sortedData[idx - 1] == sortedData[idx])
                 idx--;
             while (sortedData[idx] < value)
                 idx++;
             return idx;
         } else {
+            if (value < sortedData[0])
+                return -1;
+            else if (value > sortedData[sortedData.length - 1])
+                return 0;
             while (idx < sortedData.length - 1 && sortedData[idx] == sortedData[idx + 1])
                 idx++;
             while (sortedData[idx] < value)
