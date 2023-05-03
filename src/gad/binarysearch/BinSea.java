@@ -36,21 +36,24 @@ public final class BinSea {
 
     public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
         int idx = search(sortedData, value, result);
+        int maxLen = sortedData.length - 1;
         if(lowerBound) {
             //Smallest index where sortedData[index] >= value
+            //Case current index value is smaller than the value
+            while (idx < maxLen && sortedData[idx] < value)
+                idx++;
+            //Case same value
             while (idx > 0 && sortedData[idx - 1] == sortedData[idx])
                 idx--;
-            while (idx > 0 && sortedData[idx - 1] > value)
-                idx--;
-            while (idx < sortedData.length - 1 && sortedData[idx + 1] >= value && sortedData[idx] < value)
-                idx++;
-            if (idx == sortedData.length - 1 && sortedData[idx] < value)
+            if (idx == maxLen && sortedData[idx] < value)
                 return -1;
         } else {
             //Biggest index where sortedData[index] <= value
-            while (idx < sortedData.length - 1 && sortedData[idx] == sortedData[idx + 1])
-                idx++;
-            while (idx < sortedData.length - 1 && sortedData[idx + 1] < value)
+            //Case current index value is bigger than the value
+            while (idx < 0 && sortedData[idx] > value)
+                idx--;
+            //Case same value
+            while (idx < maxLen && sortedData[idx] == sortedData[idx + 1])
                 idx++;
             if (idx == 0 && sortedData[idx] > value)
                 return -1;
@@ -68,10 +71,10 @@ public final class BinSea {
         System.out.println(search(array, 7, new StudentResult()));
         System.out.println(search(array, 100, new StudentResult()));
 
-        System.out.println(search(array, 7, true, new StudentResult()));
-        System.out.println(search(array, 100, true, new StudentResult()));
-        System.out.println(search(array, 9002, true, new StudentResult()));
-        System.out.println(search(array, 1, true, new StudentResult()));
+        System.out.println(search(array, 7, false, new StudentResult()));
+        System.out.println(search(array, 100, false, new StudentResult()));
+        System.out.println(search(array, 9002, false, new StudentResult()));
+        System.out.println(search(array, 1, false, new StudentResult()));
 
 
         System.out.println(search(array, new NonEmptyInterval(7, 1500), new StudentResult(), new StudentResult()));
