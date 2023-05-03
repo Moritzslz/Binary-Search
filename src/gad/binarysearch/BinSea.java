@@ -37,15 +37,21 @@ public final class BinSea {
     public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
         int idx = search(sortedData, value, result);
         if(lowerBound) {
-            if(idx == 0 && sortedData[idx] > value)
-                return - 1;
-            while (idx > 0 && sortedData[idx] >= value)
+            //Smallest index where sortedData[index] >= value
+            while (idx > 0 && sortedData[idx] > value)
                 idx--;
+            while (idx > 0 && sortedData[idx - 1] == sortedData[idx])
+                idx--;
+            if (idx == 0 && sortedData[idx] > value)
+                return -1;
         } else {
-            if(idx == sortedData.length - 1 && sortedData[idx] < value)
-                return - 1;
-            while (idx < sortedData.length - 1 && value >= sortedData[idx])
+            //Biggest index where sortedData[index] <= value
+            while (idx < sortedData.length - 1 && sortedData[idx] < value)
                 idx++;
+            while (idx < sortedData.length - 1 && sortedData[idx] == sortedData[idx + 1])
+                idx++;
+            if (idx == sortedData.length - 1 && sortedData[idx] < value)
+                return -1;
         }
         return idx;
     }
@@ -64,6 +70,7 @@ public final class BinSea {
         System.out.println(search(array, 100, false, new StudentResult()));
         System.out.println(search(array, 9002, false, new StudentResult()));
         System.out.println(search(array, 1, false, new StudentResult()));
+
 
         System.out.println(search(array, new NonEmptyInterval(7, 1500), new StudentResult(), new StudentResult()));
         System.out.println(search(array, new NonEmptyInterval(9002, 10000), new StudentResult(), new StudentResult()));
