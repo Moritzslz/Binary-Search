@@ -39,24 +39,22 @@ public final class BinSea {
         if(lowerBound) {
             if(idx == 0 && sortedData[idx] > value)
                 return - 1;
-            if(sortedData[idx] != value)
+            while (idx > 0 && sortedData[idx] >= value)
                 idx--;
-            while (idx < sortedData.length - 1 && sortedData[idx] < value)
-                idx++;
-            while (idx > 0 && sortedData[idx - 1] == sortedData[idx])
+            while (idx > 0 && sortedData[idx - 1] >= value)
                 idx--;
         } else {
             if(idx == sortedData.length - 1 && sortedData[idx] < value)
                 return - 1;
-            while (idx > 0 && sortedData[idx] > value)
-                idx--;
-            while (idx < sortedData.length - 1 && sortedData[idx] == sortedData[idx+1])
+            while (idx < sortedData.length - 1 && value >= sortedData[idx])
+                idx++;
+            while (idx < sortedData.length - 1 && value >= sortedData[idx+1])
                 idx++;
         }
         return idx;
     }
 
-    public static Interval search(int[] sortedData, NonEmptyInterval valueRange, Result resultLower, Result resultHigher) {
+    public static Interval search(int[] sortedData, NonEmptyInterval valueRage, Result resultLower, Result resultHigher) {
         return null;
     }
 
