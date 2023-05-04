@@ -67,6 +67,8 @@ public final class BinSea {
         if (lowerIntervalBound == -1)
             return Interval.EmptyInterval.getEmptyInterval();
         int higherIntervalBound = search(sortedData, valueRage.getTo(), false, resultHigher);
+        if (higherIntervalBound == -1)
+            return Interval.EmptyInterval.getEmptyInterval();
         Interval result = new NonEmptyInterval(lowerIntervalBound, higherIntervalBound);
         return result;
     }
