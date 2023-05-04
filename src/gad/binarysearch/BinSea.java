@@ -39,7 +39,6 @@ public final class BinSea {
         int maxLen = sortedData.length - 1;
         if (lowerBound) {
             //Smallest index where the value is bigger or equal to the searched value
-
             while (idx < maxLen && sortedData[idx] < value)
                 idx++;
             while (idx > 0 && sortedData[idx - 1] == sortedData[idx] && sortedData[idx] == value)
@@ -63,7 +62,12 @@ public final class BinSea {
     }
 
     public static Interval search(int[] sortedData, NonEmptyInterval valueRage, Result resultLower, Result resultHigher) {
-        return null;
+        int lowerIntervalBound = search(sortedData, valueRage.getFrom(), true, resultLower);
+        if (lowerIntervalBound == -1)
+            return Interval.EmptyInterval.getEmptyInterval();
+        int higherIntervalBound = search(sortedData, valueRage.getTo(), false, resultHigher);
+        Interval result = new NonEmptyInterval(lowerIntervalBound, higherIntervalBound);
+        return result;
     }
 
     public static void main(String[] args) {
