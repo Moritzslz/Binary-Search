@@ -37,27 +37,24 @@ public final class BinSea {
     public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
         int idx = search(sortedData, value, result);
         int maxLen = sortedData.length - 1;
-        if(lowerBound) {
-            //Smallest index where sortedData[index] >= value
-            //Case current index value is smaller than the value
+        if (lowerBound) {
+            //Smallest index where the value is bigger or equal to the searched value
             while (idx < maxLen && sortedData[idx] < value)
                 idx++;
-            //Case same value
-            while (idx > 0 && sortedData[idx - 1] == sortedData[idx])
+            while (idx < 0 && sortedData[idx - 1] == sortedData[idx] && sortedData[idx] == value)
                 idx--;
-            if (idx == 0 && sortedData[idx] > value)
+            if (idx == 0 && sortedData[idx] < value)
                 return -1;
-        } else {
-            //Biggest index where sortedData[index] <= value
-            //Case current index value is bigger than the value
-            while (idx < 0 && sortedData[idx] > value)
-                idx--;
-            //Case same value
-            while (idx < maxLen && sortedData[idx] == sortedData[idx + 1])
-                idx++;
             if (idx == maxLen && sortedData[idx] < value)
                 return -1;
-
+        } else {
+            //Biggest index where the value is smaller or equal to the searched value
+            while (idx > 0 && sortedData[idx] > value)
+                idx--;
+            while (idx < maxLen && sortedData[idx] == sortedData[idx + 1] && sortedData[idx] == value)
+                idx++;
+            if (idx == 0 && sortedData[idx] > value)
+                return -1;
         }
         return idx;
     }
