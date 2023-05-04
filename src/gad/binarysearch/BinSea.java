@@ -62,6 +62,12 @@ public final class BinSea {
     }
 
     public static Interval search(int[] sortedData, NonEmptyInterval valueRage, Result resultLower, Result resultHigher) {
+        if(valueRage.getFrom() < sortedData[0])
+            return Interval.EmptyInterval.getEmptyInterval();
+        else if (valueRage.getTo() >= sortedData[sortedData.length - 1])
+            return Interval.EmptyInterval.getEmptyInterval();
+
+
         int lowerIntervalBound = search(sortedData, valueRage.getFrom(), true, resultLower);
         if (lowerIntervalBound == -1)
             return Interval.EmptyInterval.getEmptyInterval();
