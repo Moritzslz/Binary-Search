@@ -39,10 +39,7 @@ public final class BinSea {
         int maxLen = sortedData.length - 1;
         if (lowerBound) {
             //Smallest index where the value is bigger or equal to the searched value
-            if (sortedData[0] == sortedData[maxLen] && sortedData[0] < value)
-                return -1;
-            else if (sortedData[0] == sortedData[maxLen] && sortedData[0] >= value)
-                return 0;
+
             while (idx < maxLen && sortedData[idx] < value)
                 idx++;
             while (idx > 0 && sortedData[idx - 1] == sortedData[idx] && sortedData[idx] == value)
