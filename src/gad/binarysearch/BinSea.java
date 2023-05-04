@@ -45,7 +45,7 @@ public final class BinSea {
                 return 0;
             while (idx < maxLen && sortedData[idx] < value)
                 idx++;
-            while (idx < 0 && sortedData[idx - 1] == sortedData[idx] && sortedData[idx] == value)
+            while (idx > 0 && sortedData[idx - 1] == sortedData[idx] && sortedData[idx] == value)
                 idx--;
             if (idx == 0 && sortedData[idx] < value)
                 return -1;
