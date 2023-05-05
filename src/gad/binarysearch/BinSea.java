@@ -41,7 +41,7 @@ public final class BinSea {
             //Smallest index where the value is bigger or equal to the searched value
             while (idx < maxLen && sortedData[idx] < value)
                 idx++;
-            while (idx > 0 && sortedData[idx - 1] == sortedData[idx] && sortedData[idx - 1] == sortedData[idx])
+            while (idx > 0 && sortedData[idx - 1] == sortedData[idx] && sortedData[idx] == value)
                 idx--;
             if (idx == 0 && sortedData[idx] < value)
                 return -1;
@@ -51,7 +51,7 @@ public final class BinSea {
             //Biggest index where the value is smaller or equal to the searched value
             while (idx > 0 && sortedData[idx] > value)
                 idx--;
-            while (idx < maxLen && sortedData[idx] == sortedData[idx + 1] && sortedData[idx + 1] == sortedData[idx])
+            while (idx < maxLen && sortedData[idx] == sortedData[idx + 1] &&  sortedData[idx] == value)
                 idx++;
             while (idx < maxLen && sortedData[idx + 1] < value)
                 idx++;
@@ -66,14 +66,12 @@ public final class BinSea {
             return Interval.EmptyInterval.getEmptyInterval();
 
         int lowerIntervalBound = search(sortedData, valueRage.getFrom(), true, resultLower);
-        System.out.println(lowerIntervalBound);
         if (valueRage.getFrom() > sortedData[sortedData.length - 1])
             return Interval.EmptyInterval.getEmptyInterval();
         if (lowerIntervalBound == -1)
             return Interval.EmptyInterval.getEmptyInterval();
 
         int higherIntervalBound = search(sortedData, valueRage.getTo(), false, resultHigher);
-        System.out.println(higherIntervalBound);
         if(valueRage.getTo() < sortedData[0])
             return Interval.EmptyInterval.getEmptyInterval();
         if (higherIntervalBound == -1)
