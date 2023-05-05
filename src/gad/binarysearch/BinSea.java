@@ -94,7 +94,6 @@ public final class BinSea {
         //System.out.println(search(array, 9002, false, new StudentResult()));
         //System.out.println(search(array, 1, false, new StudentResult()));
 
-
         //System.out.println(search(array, new NonEmptyInterval(7, 1500), new StudentResult(), new StudentResult()));
         //System.out.println(search(array, new NonEmptyInterval(9002, 10000), new StudentResult(), new StudentResult()));
         System.out.println(search(array2, new NonEmptyInterval(6, 7), new StudentResult(), new StudentResult()));
