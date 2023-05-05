@@ -35,9 +35,6 @@ public final class BinSea {
     }
 
     public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
-        if(sortedData.length == 0)
-            return -1;
-
         int idx = search(sortedData, value, result);
         int maxLen = sortedData.length - 1;
         if (lowerBound) {
@@ -69,6 +66,8 @@ public final class BinSea {
             return Interval.EmptyInterval.getEmptyInterval();
 
         int lowerIntervalBound = search(sortedData, valueRage.getFrom(), true, resultLower);
+        if (valueRage.getFrom() < sortedData[0])
+            lowerIntervalBound = 0;
         if (valueRage.getFrom() > sortedData[sortedData.length - 1])
             return Interval.EmptyInterval.getEmptyInterval();
         if (lowerIntervalBound == -1)
@@ -85,18 +84,19 @@ public final class BinSea {
 
     public static void main(String[] args) {
         int[] array = new int[] { 2, 7, 7, 42, 69, 1337, 2000, 9001 };
-
-        System.out.println(search(array, 7, new StudentResult()));
-        System.out.println(search(array, 100, new StudentResult()));
+        int[] array2 = new int[] { 7, 7, 7, 7, 7, 7, 7 };
+        //System.out.println(search(array, 7, new StudentResult()));
+        //System.out.println(search(array, 100, new StudentResult()));
 
         //System.out.println(search(array, 7, false, new StudentResult()));
         //System.out.println(search(array, 100, false, new StudentResult()));
-        System.out.println(search(array, 6, true, new StudentResult()));
+        System.out.println(search(array2, 6, true, new StudentResult()));
         //System.out.println(search(array, 9002, false, new StudentResult()));
         //System.out.println(search(array, 1, false, new StudentResult()));
 
 
-        System.out.println(search(array, new NonEmptyInterval(7, 1500), new StudentResult(), new StudentResult()));
-        System.out.println(search(array, new NonEmptyInterval(9002, 10000), new StudentResult(), new StudentResult()));
-        }
+        //System.out.println(search(array, new NonEmptyInterval(7, 1500), new StudentResult(), new StudentResult()));
+        //System.out.println(search(array, new NonEmptyInterval(9002, 10000), new StudentResult(), new StudentResult()));
+        System.out.println(search(array2, new NonEmptyInterval(6, 7), new StudentResult(), new StudentResult()));
+    }
 }
