@@ -41,7 +41,7 @@ public final class BinSea {
             //Smallest index where the value is bigger or equal to the searched value
             while (idx < maxLen && sortedData[idx] < value)
                 idx++;
-            while (idx > 0 && sortedData[idx - 1] == sortedData[idx] && sortedData[idx] == value)
+            while (idx > 0 && sortedData[idx - 1] == sortedData[idx])
                 idx--;
             if (idx == 0 && sortedData[idx] < value)
                 return -1;
@@ -66,8 +66,6 @@ public final class BinSea {
             return Interval.EmptyInterval.getEmptyInterval();
 
         int lowerIntervalBound = search(sortedData, valueRage.getFrom(), true, resultLower);
-        if (valueRage.getFrom() < sortedData[0])
-            lowerIntervalBound = 0;
         if (valueRage.getFrom() > sortedData[sortedData.length - 1])
             return Interval.EmptyInterval.getEmptyInterval();
         if (lowerIntervalBound == -1)
@@ -85,6 +83,7 @@ public final class BinSea {
     public static void main(String[] args) {
         int[] array = new int[] { 2, 7, 7, 42, 69, 1337, 2000, 9001 };
         int[] array2 = new int[] { 7, 7, 7, 7, 7, 7, 7 };
+        int[] array3 = new int[0];
         //System.out.println(search(array, 7, new StudentResult()));
         //System.out.println(search(array, 100, new StudentResult()));
 
