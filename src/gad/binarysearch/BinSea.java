@@ -35,6 +35,9 @@ public final class BinSea {
     }
 
     public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
+        if(sortedData.length == 0)
+            return -1;
+
         int idx = search(sortedData, value, result);
         int maxLen = sortedData.length - 1;
         if (lowerBound) {
@@ -92,5 +95,5 @@ public final class BinSea {
 
         System.out.println(search(array, new NonEmptyInterval(7, 1500), new StudentResult(), new StudentResult()));
         System.out.println(search(array, new NonEmptyInterval(9002, 10000), new StudentResult(), new StudentResult()));
-    }
+        }
 }
