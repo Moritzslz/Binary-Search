@@ -41,7 +41,9 @@ public final class BinSea {
             //Smallest index where the value is bigger or equal to the searched value
             while (idx < maxLen && sortedData[idx] < value)
                 idx++;
-            while (idx > 0 && sortedData[idx - 1] == sortedData[idx])
+            while (idx > 0 && sortedData[idx - 1] == sortedData[idx] && sortedData[idx - 1] == sortedData[idx])
+                idx--;
+            while (idx > 0 && sortedData[idx - 1] == sortedData[idx] && sortedData[idx - 1] > value)
                 idx--;
             if (idx == 0 && sortedData[idx] < value)
                 return -1;
@@ -51,9 +53,11 @@ public final class BinSea {
             //Biggest index where the value is smaller or equal to the searched value
             while (idx > 0 && sortedData[idx] > value)
                 idx--;
-            while (idx < maxLen && sortedData[idx + 1] < value)
+            while (idx < maxLen && sortedData[idx] == sortedData[idx + 1] && sortedData[idx + 1] == sortedData[idx])
                 idx++;
-            while (idx < maxLen && sortedData[idx] == sortedData[idx + 1] && sortedData[idx] == value)
+            while (idx < maxLen && sortedData[idx] == sortedData[idx + 1] && sortedData[idx + 1] < value)
+                idx++;
+            while (idx < maxLen && sortedData[idx + 1] < value)
                 idx++;
             if (idx == 0 && sortedData[idx] > value)
                 return -1;
